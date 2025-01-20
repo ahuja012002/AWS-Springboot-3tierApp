@@ -9,6 +9,9 @@
 
 •	I have also setup a new VPC, subnets, NAT Gateway, route tables for proper network connectivity.
 
+Here is the architecture :
+![diagram-export-1-20-2025-6_36_04-PM](https://github.com/user-attachments/assets/6537da31-330e-4e52-b029-1b29a7814605)
+
 
 ## Basic Definition of 3-Tier :
 
@@ -215,6 +218,7 @@ Map the target group port to the port in our spring boot application.
 Map the load Balancer to the target group
 ## Update AutoScaling Group to include ALB
 Update Load Balancer to include the AutoScaling Group
+
 ## Validate the application using ALB endpoint
 Once , we complete all these steps we can validate our application with ALB DNS name.
 <img width="1396" alt="Screenshot 2025-01-20 at 1 25 09 PM" src="https://github.com/user-attachments/assets/93598732-9d90-413d-96ca-682f71c78497" />
