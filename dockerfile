@@ -1,5 +1,5 @@
 # Stage 1: Build the Maven project
-FROM maven:3.8.5-jdk-11 AS builder
+FROM maven:3.8.4 AS builder
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
