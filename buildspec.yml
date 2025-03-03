@@ -13,7 +13,7 @@ phases:
         - echo $REPOSITORY_URI
         - echo $REPOSITORY_URI:$TAG
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' hello-k8s.yaml
-        - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+        - aws ecr get-login-password --region $AWS_DEFAULT_REGION
         - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
