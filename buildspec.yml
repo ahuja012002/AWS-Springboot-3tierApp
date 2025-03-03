@@ -6,7 +6,6 @@ phases:
       - curl -sS -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.14.6/2019-08-22/bin/linux/amd64/kubectl
       - chmod +x ./kubectl ./aws-iam-authenticator
       - export PATH=$PWD/:$PATH
-      - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
   pre_build:
       commands:
         - TAG="$REPOSITORY_NAME.$REPOSITORY_BRANCH.$ENVIRONMENT_NAME.$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
@@ -14,7 +13,7 @@ phases:
         - echo $REPOSITORY_URI
         - echo $REPOSITORY_URI:$TAG
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' hello-k8s.yaml
-        - $(aws ecr get-login --no-include-email)
+        - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
         - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
