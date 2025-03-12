@@ -9,7 +9,7 @@ phases:
         - TAG="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
         # Updating Docker Image tag in your Kubernetes Deployment Manifest        
         - echo "Update Image tag in kubernetes manifest"
-        - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' manifests/deployment.yaml
+        - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY_URI:$TAG"'@' hello-k8s.yaml
         # Check AWS CLI Version        
         - echo "Checking AWS CLI Version..."
         - aws --version
@@ -43,7 +43,7 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTERNAME
       # Show time, applying manifests changes using kubectl
       - echo "Apply changes to kube manifests"            
-      - kubectl apply -f manifests/
+      - kubectl apply -f hello-k8s.yaml
       - echo "All done!!!! Kubernetes changes applied"           
       # Create Artifacts which we can use if we want to continue our pipeline for other stages
       - printf '[{"name":"deployment.yaml","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json            
