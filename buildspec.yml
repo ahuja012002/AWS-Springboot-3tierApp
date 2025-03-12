@@ -15,7 +15,7 @@ phases:
         - aws --version
         # Login to ECR Registry 
         - echo "Login in to Amazon ECR Registry"
-        - $(aws ecr get-login --no-include-email)
+        - $(aws ecr get-login-password)
         # Update Kube config Home Directory
         - export KUBECONFIG=$HOME/.kube/config
   build:
