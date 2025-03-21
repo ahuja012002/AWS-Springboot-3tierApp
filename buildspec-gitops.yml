@@ -27,8 +27,8 @@ phases:
       - cd ${TEMP_FOLDER}
       - sed -i 's@CONTAINER_IMAGE@'"$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG"'@' hello-k8s.yaml
       - git config --system --add safe.directory '*'
-      - git config —-global user.name “ahuja012002”
-      - git config —-global user.email “ahuja012002@yahoo.co.in”
+      - git config user.name “ahuja012002”
+      - git config user.email “ahuja012002@yahoo.co.in”
       - git add .
       - git commit -m "sample commit"
       - git push -u origin master
