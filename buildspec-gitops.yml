@@ -23,7 +23,7 @@ phases:
       - echo "Create temporary folder to clone the repo into..."
       - TEMP_FOLDER="$(mktemp -d)"
       - echo "Clone the repository..."
-      - git clone -b develop "https://ahuja012002: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@github.com/ahuja012002/AWS-Springboot-3tierApp.git" ${TEMP_FOLDER}
+      - git clone -b master "https://ahuja012002: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@github.com/ahuja012002/AWS-Springboot-3tierApp.git" ${TEMP_FOLDER}
       - cd ${TEMP_FOLDER}
       - sed -i 's@CONTAINER_IMAGE@'"$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG"'@' hello-k8s.yaml
       - git config --system --add safe.directory '*'
@@ -31,7 +31,7 @@ phases:
       - git config —-global user.email “ahuja012002@yahoo.co.in”
       - git add .
       - git commit -m "sample commit"
-      - git push -u origin develop
+      - git push -u origin master
   post_build:
     commands:
       - echo Build completed on `date`
