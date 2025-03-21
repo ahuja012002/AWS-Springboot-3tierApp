@@ -25,7 +25,7 @@ phases:
       - echo "Clone the repository..."
       - git clone -b master "https://ahuja012002:${GITHUB_TOKEN}@github.com/ahuja012002/AWS-Springboot-3tierApp.git" ${TEMP_FOLDER}
       - cd ${TEMP_FOLDER}
-      - sed -i ’s+215472211497.dkr.ecr.us-east-1.amazonaws.com/devops-repo-testing.*+215472211497.dkr.ecr.us-east-1.amazonaws.com/devops-repo-testing:latest:$TAG+g' hello.yaml
+      - sed -i ’s+215472211497.dkr.ecr.us-east-1.amazonaws.com/devops-repo-testing.*+215472211497.dkr.ecr.us-east-1.amazonaws.com/devops-repo-testing:$TAG+g' hello.yaml
       - git config --system --add safe.directory '*'
       - git config user.name “ahuja012002”
       - git config user.email “ahuja012002@yahoo.co.in”
