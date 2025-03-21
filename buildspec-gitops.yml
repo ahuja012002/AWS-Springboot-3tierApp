@@ -20,13 +20,18 @@ phases:
       - echo Building the Docker image...          
       - docker build -t $IMAGE_REPO_NAME .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG
+      - echo "Create temporary folder to clone the repo into..."
+      - TEMP_FOLDER="$(mktemp -d)"
+      - echo "Clone the repository..."
+      - git clone -b develop "https://ahuja012002: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@https://github.com/ahuja012002/AWS-Springboot-3tierApp.git" ${TEMP_FOLDER}
+      - cd ${TEMP_FOLDER}
       - sed -i 's@CONTAINER_IMAGE@'"$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG"'@' hello-k8s.yaml
       - git config --system --add safe.directory '*'
       - git config —-global user.name “ahuja012002”
       - git config —-global user.email “ahuja012002@yahoo.co.in”
       - git add .
       - git commit -m "sample commit"
-      - git push https://ahuja012002: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@https://github.com/ahuja012002/AWS-Springboot-3tierApp.git
+      - git push -u origin develop
   post_build:
     commands:
       - echo Build completed on `date`
