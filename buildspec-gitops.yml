@@ -31,7 +31,7 @@ phases:
       - git config user.email “ahuja012002@yahoo.co.in”
       - git add .
       - git commit -m "sample commit"
-      # push the file in git using git push -u origin master
+      - git push -u origin master
   post_build:
     commands:
       - echo Build completed on `date`
